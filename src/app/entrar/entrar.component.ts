@@ -37,7 +37,7 @@ entrar() {
 
 
 
-
+    console.log(this.userLogin)
     this.userLogin.foto
 
     this.router.navigate(['/inicio'])
