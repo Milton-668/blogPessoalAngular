@@ -27,7 +27,7 @@ entrar() {
 
     environment.token = this.userLogin.token
     environment.nome = this.userLogin.nome
-    environment.foto = this.userLogin.nome
+    environment.foto = this.userLogin.foto
     environment.id = this.userLogin.id
 
     console.log(environment.token)
@@ -46,7 +46,7 @@ entrar() {
       alert('Usuario ou senha estão incorretos!')
     }
   })
-} 
+}
 
 }
 
