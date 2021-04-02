@@ -16,10 +16,14 @@ ul.social-network li{
     padding: 10px;
 }
 
-.fa-linkedin-square:hover{
+.fa-linkedin:hover{
     color: #0072b1;
 }
 
-.fa-envelope-o:hover{
-    color: #e74842;
+.fa-instagram:hover{
+    color: #c13584;
+}
+
+.fa-facebook-square:hover{
+  color: #3b5998;
 }
