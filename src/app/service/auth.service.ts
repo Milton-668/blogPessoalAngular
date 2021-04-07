@@ -22,6 +22,12 @@ export class AuthService {
     return this.http.post<User>('http://localhost:8080/usuarios/cadastrar',user);
   }
 
+  atualizar(user: User): Observable<User> {
+  return this.http.put<User>('http://localhost:8080/usuarios',user,
+    {headers: {'Authorization':environment.token}})
+  }
+
+
   // ,{ colocar em token de dadas requisições
   //   headers:{'Authorization': environment.token}
   // })
