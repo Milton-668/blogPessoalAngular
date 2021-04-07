@@ -6,35 +6,40 @@ import { User } from '../Model/User';
 import { UserLogin } from '../Model/UserLogin';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
+  constructor(private http: HttpClient) {}
 
-  constructor(
-    private http: HttpClient
-  ) { }
-
-  entrar(userLogin: UserLogin): Observable<UserLogin>{
-    return this.http.post<UserLogin>('http://localhost:8080/usuarios/logar', userLogin)
-
+  entrar(userLogin: UserLogin): Observable<UserLogin> {
+    return this.http.post<UserLogin>(
+      'http://localhost:8080/usuarios/logar',
+      userLogin
+    );
   }
 
-  cadastrar(user: User): Observable<User>{
-    return this.http.post<User>('http://localhost:8080/usuarios/cadastrar', user)
-
+  cadastrar(user: User): Observable<User> {
+    return this.http.post<User>('http://localhost:8080/usuarios/cadastrar',user);
   }
 
-  getByIdUser(id: number): Observable<User>{
-    return this.http.get<User>(`http://localhost:8080/usuarios/${id}`)
+  // ,{ colocar em token de dadas requisições
+  //   headers:{'Authorization': environment.token}
+  // })
+
+
+  getByIdUser(id: number): Observable<User> {
+    return this.http.get<User>(`http://localhost:8080/usuarios/${id}`,{
+      headers:{'Authorization': environment.token}
+    })
   }
 
-  logado(){
-    let ok: boolean = false
+  logado() {
+    let ok: boolean = false;
 
-    if(environment.token != ''){
-      ok = true
+    if (environment.token != '') {
+      ok = true;
     }
 
-    return ok
+    return ok;
   }
 }
