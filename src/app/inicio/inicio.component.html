@@ -96,7 +96,7 @@
             <p class="card-text mt-3">{{ item.texto }}</p>
             <p class="card-text">
               <small class="text-muted">
-                <p>Publicado: {{item.date | dateAgo}}</p>
+                <p>Publicado a: {{item.date | dateAgo}}</p>
                 <!-- {{item.date | date: "dd/MM/yyyy" }} a  -->
                 <!-- {{ item.date | date: "dd/MM/yyyy" }} às
                 {{ item.date | date: "HH:mm" }} -->
@@ -125,8 +125,7 @@
             <p class="card-text mt-3">{{ item.texto }}</p>
             <p class="card-text">
               <small class="text-muted">
-                {{ item.date | date: "dd/MM/yyyy" }} às
-                {{ item.date | date: "HH:mm" }}
+                Publicado a: {{item.date | dateAgo}}
               </small>
             </p>
 
@@ -153,15 +152,14 @@
       role="tabpanel"
       aria-labelledby="nav-postagensPorTemas-tab"
     >
-      <div class="card-columns" *ngFor='let tema of listaTemas | orderBy : key : reverse'>
-        <div class="card text-center" *ngFor="let item of tema.postagem">
+      <div class="card-columns" *ngFor='let tema of listaTemas'>
+        <div class="card text-center" *ngFor='let item of tema.postagem | orderBy : key : reverse'>
           <div class="card-body">
             <h5 class="card-title m-0">{{ item.titulo }}</h5>
             <p class="card-text mt-3">{{ item.texto }}</p>
             <p class="card-text">
               <small class="text-muted">
-                {{ item.date | date: "dd/MM/yyyy" }} às
-                {{ item.date | date: "HH:mm" }}
+                Publicado a: {{item.date | dateAgo}}
               </small>
             </p>
 
