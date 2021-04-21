@@ -241,8 +241,8 @@
 
         <div class="form-group">
           <label for="tema"
-            >Escolha um tema ou
-            <a data-dismiss="modal" routerLink="/tema">Cadastre um novo tema</a
+            >Escolha um tema 
+            <a *ngIf='authService.adm()' data-dismiss="modal" routerLink="/tema">ou cadastre um novo</a
             >:
           </label>
           <select

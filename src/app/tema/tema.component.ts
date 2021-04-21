@@ -23,6 +23,11 @@ export class TemaComponent implements OnInit {
 
   ngOnInit()  {
     this.findAllTemas()
+
+    if(environment.tipo != 'adm'){
+      this.alertas.showAlertInfo("Você deve ser um adm para acesar essa rota!")
+      this.router.navigate(['/inicio'])
+    }
   }
 
   findAllTemas(){
