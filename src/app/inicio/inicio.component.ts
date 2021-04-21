@@ -18,6 +18,8 @@ export class InicioComponent implements OnInit {
 
   postagem: Postagem = new Postagem()
   listaPostagens: Postagem[]
+  tituloPost: string
+  nomeTema: string
 
   tema: Tema = new Tema()
   listaTemas: Tema[]
@@ -27,7 +29,7 @@ export class InicioComponent implements OnInit {
 
   idUser = environment.id
 
-  key= 'data'
+  key = 'data'
   reverse = true
 
   constructor(
@@ -37,52 +39,74 @@ export class InicioComponent implements OnInit {
     private authService: AuthService,
     private alertas: AlertasService
 
-    ) {}
+  ) { }
 
   ngOnInit() {
-    window.scroll(0,0)
+    window.scroll(0, 0)
     this.getAllTemas()
     this.getAllPostagens()
   }
 
-  getAllTemas(){
+  getAllTemas() {
     this.temaService.getAllTema().subscribe((resp: Tema[]) => {
       this.listaTemas = resp
     })
   }
 
-  findByIdTema(){
-    this.temaService.gitByIdTema(this.idTema).subscribe((resp: Tema)=> {
+  findByIdTema() {
+    this.temaService.gitByIdTema(this.idTema).subscribe((resp: Tema) => {
       this.tema = resp
     })
   }
 
-  getAllPostagens(){
-    this.postagemService.getAllPostagens().subscribe((resp: Postagem[])=> {
+  getAllPostagens() {
+    this.postagemService.getAllPostagens().subscribe((resp: Postagem[]) => {
       this.listaPostagens = resp
 
     })
   }
 
-  findByIdUser(){
-    this.authService.getByIdUser(this.idUser).subscribe((resp: User)=> {
+  findByIdUser() {
+    this.authService.getByIdUser(this.idUser).subscribe((resp: User) => {
       this.user = resp
     })
 
   }
 
-  publicar(){
+  publicar() {
     this.tema.id = this.idTema
     this.postagem.tema = this.tema
 
     this.user.id = this.idUser
     this.postagem.usuario = this.user
 
-    this.postagemService.postPostagem(this.postagem).subscribe((resp: Postagem)=> {
+    this.postagemService.postPostagem(this.postagem).subscribe((resp: Postagem) => {
       this.postagem = resp
       this.alertas.showAlertSuccess('Postagem realizada com sucesso!')
       this.postagem = new Postagem()
       this.getAllPostagens()
     })
   }
+
+  findbyTituloPostagem() {
+    if (this.tituloPost == '') {
+      this.getAllPostagens()
+    }
+    else {
+      this.postagemService.getByTituloPostagem(this.tituloPost).subscribe((resp: Postagem[]) => {
+        this.listaPostagens = resp
+      })
+    }
+  }
+
+  findbyNomeTema(){
+    if(this.nomeTema == ''){
+      this.getAllTemas()
+    }else{
+      this.temaService.getByNomeTema(this.nomeTema).subscribe((resp: Tema[]) => {
+        this.listaTemas = resp
+      })
+    }
+  }
+
 }
